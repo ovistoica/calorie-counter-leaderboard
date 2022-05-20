@@ -1,43 +1,55 @@
-import type { CalorieLog, User } from '@prisma/client'
+import type {CalorieLog, User} from '@prisma/client'
 
-import { prisma } from '~/db.server'
+import {prisma} from '~/db.server'
 
-export type { CalorieLog } from '@prisma/client'
+export type {CalorieLog} from '@prisma/client'
 
-export function getLog({ id, userId }: Pick<CalorieLog, "id"> & {
-  userId: User["id"]
+export function getLog({
+  id,
+  userId,
+}: Pick<CalorieLog, 'id'> & {
+  userId: User['id']
 }) {
   return prisma.calorieLog.findFirst({
-    where: { id, userId }
-  });
+    where: {id, userId},
+  })
 }
 
-export function getCalorieLogItems({ userId }: { userId: User["id"] }) {
+export function getCalorieLogItems({userId}: {userId: User['id']}) {
   return prisma.calorieLog.findMany({
-    where: { userId },
-    select: { id: true, comment: true, date: true },
-    orderBy: { updatedAt: "desc" }
-  });
+    where: {userId},
+    select: {id: true, comment: true, date: true, calories: true},
+    orderBy: {updatedAt: 'desc'},
+  })
 }
 
-export function createLog({ userId }: Pick<CalorieLog, ''> & {
-  userId: User["id"]
-}) {
+export function createLog({
+  userId,
+  comment,
+  calories,
+  date,
+}: Pick<CalorieLog, 'comment' | 'calories'> & {
+  userId: User['id']
+} & {date?: Date}) {
   return prisma.calorieLog.create({
     data: {
-      title,
-      body,
-      user: {
+      comment,
+      calories,
+      date,
+      User: {
         connect: {
-          id: userId
-        }
-      }
-    }
-  });
+          id: userId,
+        },
+      },
+    },
+  })
 }
 
-export function deleteCalorieLog({ id, userId }: Pick<CalorieLog, "id"> & { userId: User["id"] }) {
+export function deleteCalorieLog({
+  id,
+  userId,
+}: Pick<CalorieLog, 'id'> & {userId: User['id']}) {
   return prisma.calorieLog.deleteMany({
-    where: { id, userId }
-  });
+    where: {id, userId},
+  })
 }

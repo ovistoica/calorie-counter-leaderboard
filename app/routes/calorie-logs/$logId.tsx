@@ -2,43 +2,44 @@ import type {ActionFunction, LoaderFunction} from '@remix-run/node'
 import {json, redirect} from '@remix-run/node'
 import {Form, useCatch, useLoaderData} from '@remix-run/react'
 import invariant from 'tiny-invariant'
-
-import type {Note} from '~/models/calorie-log.server'
-import {deleteNote} from '~/models/calorie-log.server'
-import {getNote} from '~/models/calorie-log.server'
 import {requireUserId} from '~/session.server'
+import {CalorieLog} from '@prisma/client'
+import {deleteCalorieLog, getLog} from '~/models/calorie-log.server'
+import format from 'date-fns/format'
 
 type LoaderData = {
-  note: Note
+  calorieLog: CalorieLog
 }
 
 export const loader: LoaderFunction = async ({request, params}) => {
   const userId = await requireUserId(request)
-  invariant(params.noteId, 'noteId not found')
+  invariant(params.logId, 'logId not found')
 
-  const note = await getNote({userId, id: params.noteId})
-  if (!note) {
+  const calorieLog = await getLog({userId, id: params.logId})
+  if (!calorieLog) {
     throw new Response('Not Found', {status: 404})
   }
-  return json<LoaderData>({note})
+  return json<LoaderData>({calorieLog})
 }
 
 export const action: ActionFunction = async ({request, params}) => {
   const userId = await requireUserId(request)
-  invariant(params.noteId, 'noteId not found')
+  invariant(params.logId, 'logId not found')
 
-  await deleteNote({userId, id: params.noteId})
+  await deleteCalorieLog({userId, id: params.logId})
 
-  return redirect('/notes')
+  return redirect('/calorie-logs')
 }
 
-export default function NoteDetailsPage() {
+export default function CalorieLogDetailsPage() {
   const data = useLoaderData() as LoaderData
 
   return (
     <div>
-      <h3 className="text-2xl font-bold">{data.note.title}</h3>
-      <p className="py-6">{data.note.body}</p>
+      <h3 className="text-2xl font-bold">
+        Log {format(new Date(data.calorieLog.date), 'dd-MM-yyyy')}
+      </h3>
+      <p className="py-6">{data.calorieLog.calories}</p>
       <hr className="my-4" />
       <Form method="post">
         <button

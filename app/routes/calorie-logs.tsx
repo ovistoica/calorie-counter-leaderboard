@@ -4,27 +4,28 @@ import {Form, Link, NavLink, Outlet, useLoaderData} from '@remix-run/react'
 
 import {requireUserId} from '~/session.server'
 import {useUser} from '~/utils'
-import {getNoteListItems} from '~/models/calorie-log.server'
+import {getCalorieLogItems} from '~/models/calorie-log.server'
+import format from 'date-fns/format'
 
 type LoaderData = {
-  noteListItems: Awaited<ReturnType<typeof getNoteListItems>>
+  calorieLogs: Awaited<ReturnType<typeof getCalorieLogItems>>
 }
 
 export const loader: LoaderFunction = async ({request}) => {
   const userId = await requireUserId(request)
-  const noteListItems = await getNoteListItems({userId})
-  return json<LoaderData>({noteListItems})
+  const calorieLogs = await getCalorieLogItems({userId})
+  return json<LoaderData>({calorieLogs})
 }
 
-export default function NotesPage() {
-  const data = useLoaderData() as LoaderData
+export default function LogsPage() {
+  const data = useLoaderData<LoaderData>()
   const user = useUser()
 
   return (
     <div className="flex h-full min-h-screen flex-col">
       <header className="flex items-center justify-between bg-slate-800 p-4 text-white">
         <h1 className="text-3xl font-bold">
-          <Link to=".">Notes</Link>
+          <Link to=".">Calorie Logs</Link>
         </h1>
         <p>{user.email}</p>
         <Form action="/logout" method="post">
@@ -40,24 +41,24 @@ export default function NotesPage() {
       <main className="flex h-full bg-white">
         <div className="h-full w-80 border-r bg-gray-50">
           <Link to="new" className="block p-4 text-xl text-blue-500">
-            + New Note
+            + New Log
           </Link>
 
           <hr />
 
-          {data.noteListItems.length === 0 ? (
+          {data.calorieLogs.length === 0 ? (
             <p className="p-4">No notes yet</p>
           ) : (
             <ol>
-              {data.noteListItems.map((note) => (
-                <li key={note.id}>
+              {data.calorieLogs.map((log) => (
+                <li key={log.id}>
                   <NavLink
                     className={({isActive}) =>
                       `block border-b p-4 text-xl ${isActive ? 'bg-white' : ''}`
                     }
-                    to={note.id}
+                    to={log.id}
                   >
-                    📝 {note.title}
+                    {format(new Date(log.date), 'dd-MM-yyyy')}: {log.calories}
                   </NavLink>
                 </li>
               ))}

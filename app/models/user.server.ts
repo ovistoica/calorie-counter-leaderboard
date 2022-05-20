@@ -32,6 +32,19 @@ export async function deleteUserByEmail(email: User['email']) {
   return prisma.user.delete({where: {email}})
 }
 
+export async function getLeaderboard() {
+  return prisma.user.findMany({
+    select: {
+      username: true,
+      _count: {
+        select: {logs: true},
+      },
+      email: true,
+    },
+    orderBy: {logs: {_count: 'desc'}},
+  })
+}
+
 export async function verifyLogin(
   email: User['email'],
   password: Password['hash']
