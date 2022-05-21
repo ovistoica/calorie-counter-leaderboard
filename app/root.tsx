@@ -9,11 +9,11 @@ import {
   ScrollRestoration,
 } from '@remix-run/react'
 
-import tailwindStylesheetUrl from './styles/tailwind.css'
+import rootCSS from '../styles/root.css'
 import {getUser} from './session.server'
 
 export const links: LinksFunction = () => {
-  return [{rel: 'stylesheet', href: tailwindStylesheetUrl}]
+  return [{rel: 'stylesheet', href: rootCSS}]
 }
 
 export const meta: MetaFunction = () => ({
@@ -38,8 +38,9 @@ export default function App() {
       <head>
         <Meta />
         <Links />
+        <title>Calorie Counting Leaderboard</title>
       </head>
-      <body className="h-full">
+      <body className="h-full h-5">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

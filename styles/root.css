@@ -1,0 +1,79 @@
+/* Welcome 🎉 */
+/* Use Open-Props from NPM or CDN */
+@import 'open-props/open-props.min.css';
+
+/*
+ open-props normalize isn't require, but makes for a nice base.
+ add this to see default styles for <details> and other HTM5 elements
+ Bonus: normalize includes light and dark vars for adaptive theming */
+@import 'open-props/normalize.min.css';
+
+/*
+ As you use props, the PostCSS plugin
+ "jit-props" will add them to the stylesheet.
+ see postcss.config.js for more
+*/
+
+:root {
+    --font-mono: pt-mono, monospace;
+    --font-sans: futura-pt, serif;
+    --font-display: axia-stencil, serif;
+}
+
+html {
+    background: white;
+    font-family: var(--font-sans);
+    color: var(--gray-2);
+    font-size: var(--size-4);
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.layout {
+    width: 100%;
+    max-width: 1080px;
+    display: grid;
+    gap: var(--size-8);
+}
+
+.hero {
+    padding-block: var(--size-8);
+    padding-inline: var(--size-4);
+    border-radius: var(--size-2);
+}
+
+.hero--dark {
+    background-image: var(--gradient-8);
+}
+
+.hero--light {
+    background-image: var(--gradient-15);
+}
+
+.hero h1 {
+    color: var(--gray-3);
+    font-size: var(--size-fluid-6);
+    font-weight: 400;
+}
+
+.hero h2 {
+    font-size: var(--size-fluid-5);
+}
+
+.hero--light h2, .hero--light p {
+    color: var(--gray-8);
+}
+
+.hero .lede {
+    font-size: var(--size-fluid-3);
+}
+
