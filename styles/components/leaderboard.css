@@ -7,12 +7,20 @@
 }
 
 .leaderboard table {
-    max-width: 120ch;
     place-content: center;
     overflow-x: auto;
     margin: auto;
     padding: 0 var(--size-2);
+    min-width: 100%;
 }
+
+@media (--md-n-above) {
+    .leaderboard table {
+        min-width: 800px;
+        max-width: 1024px;
+    }
+}
+
 
 .leaderboard th {
     padding: var(--size-3) 0;
@@ -20,10 +28,15 @@
 
 .leaderboard th:first-child {
     text-align: left;
+    padding-left: var(--size-2);
 }
 
 .leaderboard td {
     padding: var(--size-3) 0;
+}
+
+.leaderboard td:first-child {
+    padding-left: var(--size-2);
 }
 
 .person {
