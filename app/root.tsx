@@ -9,11 +9,15 @@ import {
   ScrollRestoration,
 } from '@remix-run/react'
 
-import rootCSS from '../styles/root.css'
+import rootCSS from '~/styles/root.css'
+import openPropsCss from '~/styles/open-props.css'
 import {getUser} from './session.server'
 
 export const links: LinksFunction = () => {
-  return [{rel: 'stylesheet', href: rootCSS}]
+  return [
+    {rel: 'stylesheet', href: rootCSS},
+    {rel: 'stylesheet', href: openPropsCss},
+  ]
 }
 
 export const meta: MetaFunction = () => ({
@@ -34,13 +38,13 @@ export const loader: LoaderFunction = async ({request}) => {
 
 export default function App() {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en">
       <head>
         <Meta />
         <Links />
         <title>Calorie Counting Leaderboard</title>
       </head>
-      <body className="h-full h-5">
+      <body>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

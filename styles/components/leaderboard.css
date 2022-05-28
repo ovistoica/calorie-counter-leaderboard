@@ -1,0 +1,39 @@
+.leaderboard {
+    text-align: center;
+    width: 100%;
+    place-content: center;
+    margin: var(--size-6) auto;
+    padding: var(--size-2)
+}
+
+.leaderboard table {
+    max-width: 120ch;
+    place-content: center;
+    overflow-x: auto;
+    margin: auto;
+    padding: 0 var(--size-2);
+}
+
+.leaderboard th {
+    padding: var(--size-3) 0;
+}
+
+.leaderboard th:first-child {
+    text-align: left;
+}
+
+.leaderboard td {
+    padding: var(--size-3) 0;
+}
+
+.person {
+    display: flex;
+    gap: var(--size-3);
+    align-items: center;
+}
+
+.person > img {
+    border-radius: var(--radius-round);
+    inline-size: var(--size-8);
+}
+

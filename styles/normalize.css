@@ -1,0 +1,434 @@
+
+
+:where(:not(fieldset,progress,meter)) {
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    border-style: solid;
+    border-width: 0
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :where(html) {
+        scroll-behavior: smooth
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :focus-visible {
+        transition: outline-offset 145ms var(--ease-2)
+    }
+
+    :where(:not(:active)):focus-visible {
+        transition-duration: .25s
+    }
+}
+
+:where(:not(:active)):focus-visible {
+    outline-offset: 5px
+}
+
+:where(body) {
+    scrollbar-gutter: stable both-edges;
+    max-block-size: 100%
+}
+
+
+:where(img,svg,video,canvas,audio,iframe,embed,object) {
+    display: block
+}
+
+:where(img,svg,video) {
+    block-size: auto;
+    max-inline-size: 90%
+}
+
+:where(input,button,textarea,select), :where(input[type=file])::-webkit-file-upload-button {
+    color: inherit;
+    font: inherit;
+    font-size: inherit;
+    letter-spacing: inherit
+}
+
+:where(input,textarea) {
+    padding-block: var(--size-1);
+    padding-inline: var(--size-2)
+}
+
+:where(select) {
+    padding-block: .75ch;
+    padding-inline: 1.25ch 0
+}
+
+:where(textarea,select,input:not(button,button[type],input[type=button],input[type=submit],input[type=reset])) {
+    background-color: var(--surface-2);
+    border-radius: var(--radius-2)
+}
+
+@media (prefers-color-scheme: dark) {
+    :where(textarea,select,input:not(button,button[type],input[type=button],input[type=submit],input[type=reset])) {
+        background-color: #171a1c
+    }
+}
+
+:where(textarea) {
+    resize: block
+}
+
+:where(input[type=checkbox],input[type=radio]) {
+    block-size: var(--size-3);
+    inline-size: var(--size-3)
+}
+
+:where(svg) {
+    stroke: none;
+    fill: currentColor
+}
+
+:where(svg):where(:not([fill])) {
+    stroke: currentColor;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round
+}
+
+:where(svg):where(:not([width])) {
+    inline-size: var(--size-10)
+}
+
+:where(code,kbd,samp,pre) {
+    font-family: var(--font-mono)
+}
+
+:where(:not(pre)>code,kbd) {
+    white-space: nowrap
+}
+
+:where(pre) {
+    max-inline-size: max-content;
+    min-inline-size: 0;
+    white-space: pre
+}
+
+:where(:not(pre)>code) {
+    background: var(--surface-2);
+    border-radius: var(--radius-2);
+    padding: var(--size-1) var(--size-2)
+}
+
+:where(kbd,var) {
+    border-color: var(--surface-4);
+    border-radius: var(--radius-2);
+    border-width: var(--border-size-1);
+    padding: var(--size-1) var(--size-2)
+}
+
+:where(mark) {
+    border-radius: var(--radius-2);
+    padding-inline: var(--size-1)
+}
+
+:where(ol,ul) {
+    padding-inline-start: var(--size-8)
+}
+
+:where(li) {
+    padding-inline-start: var(--size-2)
+}
+
+:where(li,dd,figcaption) {
+    max-inline-size: var(--size-content-2)
+}
+
+:where(p) {
+    max-inline-size: var(--size-content-3)
+}
+
+:where(dt,summary) {
+    font-weight: var(--font-weight-7)
+}
+
+:where(dt:not(:first-of-type)) {
+    margin-block-start: var(--size-5)
+}
+
+:where(small) {
+    font-size: max(.5em, var(--font-size-0));
+    max-inline-size: var(--size-content-1)
+}
+
+:where(hr) {
+    background-color: var(--surface-3);
+    height: var(--border-size-2);
+    margin-block: var(--size-fluid-5)
+}
+
+:where(figure) {
+    display: grid;
+    gap: var(--size-2);
+    place-items: center
+}
+
+:where(figure) > :where(figcaption) {
+    font-size: var(--font-size-1)
+}
+
+:where(blockquote,:not>cite) {
+    border-inline-start-width: var(--border-size-3)
+}
+
+:where(blockquote) {
+    display: grid;
+    gap: var(--size-3);
+    max-inline-size: var(--size-content-2);
+    padding-block: var(--size-3);
+    padding-inline: var(--size-4)
+}
+
+:where(:not(blockquote)>cite) {
+    padding-inline-start: var(--size-2)
+}
+
+:where(summary) {
+    background: var(--surface-3);
+    border-radius: var(--radius-2);
+    margin: calc(var(--size-2) * -1) calc(var(--size-3) * -1);
+    padding: var(--size-2) var(--size-3)
+}
+
+:where(details) {
+    background: var(--surface-2);
+    border-radius: var(--radius-2);
+    padding-block: var(--size-2);
+    padding-inline: var(--size-3)
+}
+
+:where(details[open]>summary) {
+    border-end-end-radius: 0;
+    border-end-start-radius: 0;
+    margin-bottom: var(--size-2)
+}
+
+:where(fieldset) {
+    border: var(--border-size-1) solid var(--surface-4);
+    border-radius: var(--radius-2)
+}
+
+:where(del) {
+    background: var(--red-9);
+    color: var(--red-2)
+}
+
+:where(ins) {
+    background: var(--green-9);
+    color: var(--green-1)
+}
+
+:where(abbr) {
+    text-decoration-color: var(--blue-5)
+}
+
+:where(dialog) {
+    background-color: var(--surface-1);
+    border-radius: var(--radius-3);
+    box-shadow: var(--shadow-6);
+    color: inherit
+}
+
+@media (prefers-color-scheme: dark) {
+    :where(dialog) {
+        background-color: var(--surface-2)
+    }
+}
+
+:where(dialog)::backdrop {
+    backdrop-filter: blur(25px)
+}
+
+:where(html[\:has\(dialog\[open\]\)]) {
+    overflow: hidden
+}
+
+:where(html:has(dialog[open])) {
+    overflow: hidden
+}
+
+:where(menu) {
+    display: flex;
+    gap: var(--size-3);
+    padding-inline-start: 0
+}
+
+:where(button,button[type],input[type="button"],input[type="submit"],input[type="reset"]),
+:where(input[type="file"])::-webkit-file-upload-button,
+:where(input[type="file"])::file-selector-button {
+    --_accent: initial /* your color */;
+    --_text: initial /* your text color */;
+    --_size: initial /* your size */;
+
+    --_bg-light: white;
+    --_bg-dark: var(--surface-3);
+    --_bg: var(--_bg-light);
+
+    --_border: var(--surface-3);
+
+    --_highlight-size: 0;
+    --_highlight-light: hsl(210 10% 71% / 25%);
+    --_highlight-dark: hsl(210 10% 5% / 25%);
+    --_highlight: var(--_highlight-light);
+
+    --_ink-shadow-light: 0 1px 0 var(--gray-3);
+    --_ink-shadow-dark: 0 1px 0 var(--surface-1);
+    --_ink-shadow: var(--_ink-shadow-light);
+
+    --_icon-size: 2ch;
+    --_icon-color: var(--_accent, var(--link));
+
+    font-size: var(--_size);
+    background: var(--_bg);
+    color: var(--_text);
+    border: var(--border-size-2) solid var(--_border);
+    box-shadow: var(--shadow-2),
+    0 1px var(--surface-3),
+    0 0 0 var(--_highlight-size) var(--_highlight);
+    text-shadow: var(--_ink-shadow);
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    place-self: start;
+    gap: var(--size-2);
+
+    font-weight: var(--font-weight-7);
+    border-radius: var(--radius-2);
+    padding-block: .75ch;
+    padding-inline: 1.75ch;
+
+    transition: border-color .5s var(--ease-3) 3s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :where(button,button[type],input[type="button"],input[type="submit"],input[type="reset"]) {
+        transition: border-color .5s var(--ease-3) 3s,
+        box-shadow 145ms var(--ease-4);
+    }
+}
+
+/* icon */
+:where(:is(button,button[type],input[type="button"],input[type="submit"],input[type="reset"]) > svg) {
+    flex-shrink: 0;
+    filter: drop-shadow(var(--_ink-shadow));
+    block-size: var(--_icon-size);
+    inline-size: var(--_icon-size);
+}
+
+:where(:is(button,button[type],input[type="button"],input[type="submit"],input[type="reset"]) > svg > *) {
+    stroke: var(--_icon-color);
+    stroke-width: var(--border-size-2);
+}
+
+/* adaptive indigo text */
+:where([type="submit"], form button:not([type],[disabled])) {
+    --_text: var(--_accent, var(--link));
+}
+
+/* red reset */
+:where([type="reset"]) {
+    --_text: var(--red-6);
+    --_border: var(--red-3);
+}
+
+:where([type="reset"]):focus-visible {
+    outline-color: var(--red-6);
+}
+
+/* file input */
+:where(input[type="file"]) {
+    padding: 0;
+    cursor: initial;
+    align-self: flex-start;
+    border-radius: var(--radius-2);
+    border: var(--border-size-1) solid var(--surface-2);
+    box-shadow: var(--inner-shadow-4);
+    color: var(--text-2);
+}
+
+:where(input[type="file"])::-webkit-file-upload-button,
+:where(input[type="file"])::file-selector-button {
+    margin-inline-end: 1.75ch;
+    cursor: pointer;
+}
+
+/* disabled */
+:where(button[disabled], input[type="button"][disabled]) {
+    --_bg: none;
+    --_text: var(--gray-6);
+    cursor: not-allowed;
+    box-shadow: var(--shadow-1);
+}
+
+/* pressing */
+:where(:is(button,input[type]):not(:active):hover) {
+    --_highlight-size: var(--size-2);
+    transition-delay: 0s;
+    transition-duration: .25s;
+}
+
+/* submit, form > button, reset matching hover border color */
+:where([type="submit"], [type="reset"], form button:not([type])):is(:hover, :focus-visible):not([disabled]) {
+    --_border: currentColor;
+}
+
+@media (prefers-color-scheme: dark) {
+    :where(button,button[type],input[type="button"],input[type="submit"],input[type="reset"]),
+    :where(input[type="file"])::-webkit-file-upload-button,
+    :where(input[type="file"])::file-selector-button {
+        --_highlight: var(--_highlight-dark);
+        --_bg: var(--_bg-dark);
+        --_ink-shadow: var(--_ink-shadow-dark);
+    }
+
+    :where([type="reset"]) {
+        --_text: var(--red-2);
+        --_border: var(--surface-2);
+    }
+
+    :where(button[disabled], input[type="button"][disabled]) {
+        --_text: var(--gray-5);
+    }
+
+    :where([type="submit"]),
+    :where(form button:not([type="button"])),
+    :where([type="reset"]),
+    :where([disabled]) {
+        --_bg: var(--surface-1);
+    }
+}
+
+
+body, form {
+    display: flex;
+    flex-wrap: wrap;
+    padding: var(--size-5);
+    place-content: center;
+}
+
+.btn-primary {
+    --_bg: linear-gradient(var(--yellow-5), var(--yellow-7));
+    --_border: var(--yellow-6);
+    --_text: var(--yellow-0);
+    --_ink-shadow: 0 1px 0 var(--yellow-9);
+}
+
+.btn-large {
+    --_size: var(--font-size-4);
+}
+
+[data-icon="cloud"] {
+    --icon-cloud: url("https://api.iconify.design/mdi:apple-icloud.svg") center / contain no-repeat;
+    -webkit-mask: var(--icon-cloud);
+    background: var(--gradient-30);
+    inline-size: 2ch;
+    block-size: 2ch;
+    filter: drop-shadow(var(--_ink-shadow));
+}

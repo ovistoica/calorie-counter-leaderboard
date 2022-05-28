@@ -1,4 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
+import type {LinksFunction} from '@remix-run/node'
+import leaderboardCSS from '~/styles/components/leaderboard.css'
+
 const people = [
   {
     name: 'Lindsay Walton',
@@ -12,7 +15,19 @@ const people = [
   // More people...
 ]
 
-export function Leaderboard() {
+export const links: LinksFunction = () => {
+  return [{rel: 'stylesheet', href: leaderboardCSS}]
+}
+
+export default function Leaderboard() {
+  return (
+    <section className="leaderboard">
+      <h1>Leaderboard</h1>
+    </section>
+  )
+}
+
+export function Leaderboard2() {
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
